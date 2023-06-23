@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rastgele Sayı Oyunu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    button {
+      margin-top: 10px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Rastgele Sayı Oyunu</h1>
+  
+  <label for="number1">1. Sayı:</label>
+  <input type="number" id="number1" min="1" max="10">
+  
+  <label for="number2">2. Sayı:</label>
+  <input type="number" id="number2" min="1" max="10">
+  
+  <label for="number3">3. Sayı:</label>
+  <input type="number" id="number3" min="1" max="10">
+  
+  <button onclick="playGame()">Oyunu Başlat</button>
+  
+  <h2 id="result"></h2>
+  
+  <script>
+    function playGame() {
+      var userNumber1 = parseInt(document.getElementById("number1").value);
+      var userNumber2 = parseInt(document.getElementById("number2").value);
+      var userNumber3 = parseInt(document.getElementById("number3").value);
+      
+      var randomNumber1 = Math.floor(Math.random() * 10) + 1;
+      var randomNumber2 = Math.floor(Math.random() * 10) + 1;
+      var randomNumber3 = Math.floor(Math.random() * 10) + 1;
+      
+      var resultElement = document.getElementById("result");
+      
+      resultElement.innerHTML = "Kullanıcının tahmin ettiği sayılar: " + userNumber1 + ", " + userNumber2 + ", " + userNumber3 + "<br>";
+      resultElement.innerHTML += "Bilgisayarın oluşturduğu sayılar: " + randomNumber1 + ", " + randomNumber2 + ", " + randomNumber3 + "<br>";
+      
+      var correctCount = 0;
+      
+      if (userNumber1 === randomNumber1 || userNumber1 === randomNumber2 || userNumber1 === randomNumber3) {
+        correctCount++;
+      }
+      
+      if (userNumber2 === randomNumber1 || userNumber2 === randomNumber2 || userNumber2 === randomNumber3) {
+        correctCount++;
+      }
+      
+      if (userNumber3 === randomNumber1 || userNumber3 === randomNumber2 || userNumber3 === randomNumber3) {
+        correctCount++;
+      }
+      
+      if (correctCount >= 2) {
+        resultElement.innerHTML += "Kazandınız!";
+      } else {
+        resultElement.innerHTML += "Kaybettiniz!";
+      }
+    }
+  </script>
+</body>
+</html>
